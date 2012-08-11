@@ -28,12 +28,12 @@ IP    **heads ;
    ---------------
 */
 if ( solvemap == NULL ) {
-   fprintf(stderr, "\n fatal error in SolveMap_forwardSetup(%p,%d)"
+   fprintf(stderr, "\n fatal error in SolveMap_forwardSetup"
            "\n solvemap is NULL\n") ;
    exit(-1) ;
 }
 if ( myid < 0 || myid >= solvemap->nproc ) {
-   fprintf(stderr, "\n fatal error in SolveMap_forwardSetup(%p,%d)"
+   fprintf(stderr, "\n fatal error in SolveMap_forwardSetup"
            "\n myid %d, solvemap->nproc %d\n", myid, solvemap->nproc) ;
    exit(-1) ;
 }
