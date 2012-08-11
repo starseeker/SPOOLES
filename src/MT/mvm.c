@@ -278,7 +278,7 @@ for ( myid = 0, obj = MTmvmObjs ; myid < nthread ; myid++, obj++ ) {
            myid, rc) ;
       exit(-1) ;
    } else if ( msglvl > 2 ) {
-      fprintf(stderr, "\n %% thread %d created", tids[myid]) ;
+      fprintf(stderr, "\n %% thread %d created", myid) ;
    }
 }
 MARKTIME(t2) ;

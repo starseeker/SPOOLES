@@ -519,10 +519,10 @@ fprintf(fp, "\n rowind = %p, colind = %p, entries = %p",
         mtx->rowind, mtx->colind, mtx->entries) ;
 fprintf(fp, ", base = %p", DV_entries(&mtx->wrkDV)) ;
 fprintf(fp, 
-       "\n rowind - base = %d, colind - base = %d, entries - base = %d",
-       mtx->rowind - (int *) DV_entries(&mtx->wrkDV),
-       mtx->colind - (int *) DV_entries(&mtx->wrkDV),
-       mtx->entries - DV_entries(&mtx->wrkDV)) ;
+       "\n rowind - base = %ld, colind - base = %ld, entries - base = %ld",
+       (long unsigned int)(mtx->rowind - (int *) DV_entries(&mtx->wrkDV)),
+       (long unsigned int)(mtx->colind - (int *) DV_entries(&mtx->wrkDV)),
+       (long unsigned int)(mtx->entries - DV_entries(&mtx->wrkDV))) ;
 
 return(1) ; }
 

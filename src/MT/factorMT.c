@@ -328,7 +328,7 @@ for ( myid = 0, data = dataObjects ; myid < nthread ; myid++, data++ ) {
               myid, rc) ;
       exit(-1) ;
    } else if ( msglvl > 1 ) {
-      fprintf(stderr, "\n thread %d created", tids[myid]) ;
+      fprintf(stderr, "\n thread %d created", myid) ;
    }
 }
 MARKTIME(t2) ;
@@ -490,7 +490,7 @@ if ( msglvl > 2 ) {
 #if THREAD_TYPE == TT_POSIX
 if ( msglvl > 2 ) {
    fprintf(stdout, "\n ### inside workerFactor, myid = %d" 
-                   ", pthread_self() = %d", myid, pthread_self()) ;
+                   ", pthread_self() = %d", myid, (int)pthread_self()) ;
    fflush(stdout) ;
 }
 #endif

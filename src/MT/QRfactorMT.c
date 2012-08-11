@@ -215,7 +215,7 @@ void             *status ;
                  myid, rc) ;
          exit(-1) ;
       } else if ( msglvl > 2 ) {
-         fprintf(stderr, "\n thread %d created", tids[myid]) ;
+         fprintf(stderr, "\n thread %d created", myid) ;
       }
    }
    for ( myid = 0 ; myid < nthread ; myid++ ) {

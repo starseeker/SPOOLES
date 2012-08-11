@@ -46,9 +46,9 @@ if ( sizeof(int) == sizeof(double) ) {
 } else if ( 2*sizeof(int) == sizeof(double) ) {
    nbytes = ((nint + 1)/2 + ndouble)*sizeof(double) ;
 } else {
-   fprintf(stderr, "\n error in DenseMtx_nbytesNeeded(%d,%d)"
-           "\n sizeof(int) = %d, sizeof(double) = %d",
-           nrow, ncol, sizeof(int), sizeof(double)) ;
+   fprintf(stderr, "\n error in DenseMtx_nbytesNeeded(%ld,%ld)"
+           "\n sizeof(int) = %ld, sizeof(double) = %ld",
+           (long unsigned int)nrow, (long unsigned int)ncol, (long unsigned int)sizeof(int), (long unsigned int)sizeof(double)) ;
    exit(-1) ;
 }
 return(nbytes) ; }

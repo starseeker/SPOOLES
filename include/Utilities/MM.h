@@ -33,19 +33,19 @@ if ( (count) > 0 ) { \
    if ( (ptr = (type *)malloc((unsigned long)((count)*sizeof(type)))) \
         == NULL ) {\
       fprintf(stderr, \
-              "\n ALLOCATE failure : bytes %d, line %d, file %s", \
-              (count)*sizeof(type), __LINE__, __FILE__) ; \
+              "\n ALLOCATE failure : bytes %ld, line %ld, file %s", \
+              (long unsigned int)(count)*sizeof(type), (long unsigned int)__LINE__, __FILE__) ; \
       exit(-1) ; } \
    else if ( MEMORY_DEBUG > 0 ) { \
       fprintf(stderr, \
-              "\n ALLOCATE : address %p, bytes %d, line %d, file %s", \
-              ptr, (count)*sizeof(type), __LINE__, __FILE__) ; } } \
+              "\n ALLOCATE : address %p, bytes %ld, line %ld, file %s", \
+              ptr, (long unsigned int)(count)*sizeof(type), (long unsigned int)__LINE__, __FILE__) ; } } \
 else if ( (count) == 0 ) { \
    ptr = NULL ; } \
 else { \
    fprintf(stderr, \
-           "\n ALLOCATE error : bytes %d, line %d, file %s", \
-           (count)*sizeof(type), __LINE__, __FILE__) ; \
+           "\n ALLOCATE error : bytes %ld, line %ld, file %s", \
+           (long unsigned int)(count)*sizeof(type), (long unsigned int)__LINE__, __FILE__) ; \
    exit(-1) ; }
 /*
    --------------------------------------------------------
@@ -56,8 +56,8 @@ else { \
 #if MEMORY_DEBUG > 0
 #define FREE(ptr) \
 if ( (ptr) != NULL ) { \
-   fprintf(stderr, "\n FREE, line %d, file %s : address %p", \
-           __LINE__, __FILE__, ptr) ; \
+   fprintf(stderr, "\n FREE, line %ld, file %s : address %p", \
+           (long unsigned int)__LINE__, __FILE__, ptr) ; \
    free((char *) (ptr)) ; \
    (ptr) = NULL ; }
 #else
