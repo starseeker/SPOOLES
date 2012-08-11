@@ -1,0 +1,120 @@
+***** SPOOLES 2.2 : SParse Object Oriented Linear Equations Solver *****
+===============================================================================
+SPOOLES is a library for solving sparse real and complex linear systems of
+equations, written in the C language using object oriented design. At present,
+there is the following functionality:
+   1. Compute multiple minimum degree, generalized nested dissection and
+      multisection orderings of matrices with symmetric structure.
+   2. Factor and solve square linear systems of equations with symmetric
+      structure, with or without pivoting for stability. The factorization can
+      be symmetric LDLT, Hermitian LDLH, or nonsymmetric LDU. A direct
+      factorization or a drop tolerance factorization can be computed. The
+      factors and solve can be done in serial mode, multithreaded with Solaris
+      or POSIX threads, or with MPI.
+   3. Factor and solve overdetermined full rank systems of equations using a
+      multifrontal QR factorization, in serial or using POSIX threads.
+   4. Solve square linear systems using a variety of Krylov iterative methods.
+      The preconditioner is a drop tolerance factorization, with or without
+      pivoting for stability.
+
+===============================================================================
+The SPOOLES library has been developed by members of the Mathematics and
+Engineering Analysis Unit of Boeing Phantom Works. The library was supported in
+part by DARPA contract DABT63-95-C-0122 and the DoD High Performance Computing
+Modernization Program Common HPC Software Support Initiative.
+Individuals who have contributed to this package include:
+   1. Cleve Ashcraft, Boeing Phantom Works
+   2. Roger Grimes, Boeing Phantom Works
+   3. Joseph Liu, York University
+   4. Jim Patterson, Boeing Phantom Works
+   5. Dan Pierce, Boeing Phantom Works
+   6. Yichi Pierce, Boeing Phantom Works
+   7. Peter Schartz, CSAR Corporation
+   8. Juergen Schulze, University of Paderborn
+   9. Wei-Pai Tang, University of Waterloo
+  10. David Wah, Boeing Phantom Works
+  11. Jason Wu, Boeing Phantom Works
+This release is entirely within the public domain; there are no licensing
+restrictions, and there is no warranty of any sort.
+Contact cleve.ashcraft@boeing.com for more information, comments and bug
+reports.
+
+===============================================================================
+The library is available as a gzip'd, tar'd file that contains the entire
+source, drivers and LaTeX documentation. There are seven Postscript files that
+contain documentation.
+   1. install.ps.gz --- "SPOOLES 2.2 Installation Manual", 7 pages, describes
+      the library's structure and installation procedures.
+   2. ReferenceManual.ps.gz --- "The Reference Manual for SPOOLES, Release 2.2:
+      An Object Oriented Software Library for Solving Sparse Linear Systems of
+      Equations", over 400 pages, every object, method and driver is
+      documented.
+   3. fronttrees.ps.gz --- "Ordering Sparse Matrices and Transforming Front
+      Trees", 20, pages, describes the different ordering methods in the
+      library and the effect of the front trees on performance.
+   4. LinSol.ps.gz --- "Wrapper Objects for Solving a Linear System of
+      Equations using SPOOLES 2.2", 58 pages, provides the most gentle
+      introduction to the library, documents a set of software objects written
+      to incorporate the SPOOLES linear solver into the CSAR-Nastran finite
+      element software package.
+   5. AllInOne.ps.gz --- "Solving Linear Systems using SPOOLES 2.2", 54 pages,
+      contains example programs with commentary, a general introduction to the
+      library, much more detail than the "Wrapper Objects" document immediately
+      above.
+   6. Eigen.ps.gz --- "Integrating the SPOOLES 2.2 Sparse Linear Algebra
+      Library into the LANCZOS Block-Shifted Lanczos Eigensolver", 42 pages,
+      documents a set of software objects written to incorporate the SPOOLES
+      linear solver into an eigenanalysis package, also funded by DARPA
+      contract DABT63-95-C-0122 and the DoD High Performance Computing
+      Modernization Program Common HPC Software Support Initiative.
+   7. PP99.ps.gz "SPOOLES: An Object-Oriented Sparse Matrix Library", a paper
+      to be included in the Proceedings of the 1999 SIAM Conference on Parallel
+      Processing for Scientific Computing, March 22-27, 1999.
+   8. spooles.2.2.tar.gz --- gzip'd, tar'd file of library
+
+===============================================================================
+Changes since the 2.0 release.
+   1. Semi-implicit factorizations to reduce storage and/or operation counts
+      for direct and approximate factorizations. (See the SemiImplMtx
+      directory.)
+   2. Krylov solvers for real SPD, symmetric indefinite, and nonsymmetric
+      linear systems. (See the Iter directory.) The preconditioner is a drop
+      tolerance approximate factorization obtained from the FrontMtx object.
+      There also exists a simpler ILU drop tolerance factorization in the
+      ILUMtx directory.
+   3. There is a "patch-and-go" functionality for factorizations that must be
+      modified on the fly. One application is found in singular or near
+      singular matrices from structural analysis applications. Another
+      application is for matrices from interior point methods. In both cases,
+      the presence of a zero or small pivot element requires special handling.
+   4. There is a "wrapper" object to solve linear systems found in the LinSol
+      directory. It was used to incorporate the SPOOLES library into the CSAR-
+      Nastran finite element package.
+   5. There is a "wrapper" object used in an eigenanalysis package found in the
+      Eigen directory.
+   6. Several bugs were fixed in the multithreaded and MPI solvers. Users of
+      the SPOOLES 2.0 versions should upgrade.
+   7. The user manual and reference manual documentation has been reorganized.
+      There is a new documentation directory, with five subdirectories:
+         1. documentation/Install holds "SPOOLES 2.2 Installation Manual", the
+            installation manual.
+         2. documentation/AllInOne holds "Solving Linear Systems using SPOOLES
+            2.2", the driver programs manual.
+         3. documentation/FrontTrees holds "Ordering Sparse Matrices and
+            Transforming Front Trees", the ordering manual.
+         4. documentation/ReferenceManual holds "The Reference Manual for
+            SPOOLES, Release 2.2: An Object Oriented Software Library for
+            Solving Sparse Linear Systems of Equations", the complete reference
+            manual.
+         5. documentation/PP99 holds "SPOOLES: An Object-Oriented Sparse Matrix
+            Library", a paper to be included in the Proceedings of the 1999
+            SIAM Conference on Parallel Processing for Scientific Computing,
+            March 22-27, 1999.
+
+===============================================================================
+Changes since the 1.0 release.
+   1. Complex linear systems are now supported
+   2. Factor storage has been reorganized to improve parallel solves
+   3. Several bugs in the MPI solvers have been fixed
+
+===============================================================================
