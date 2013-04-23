@@ -201,7 +201,12 @@ void             *status ;
    pthread_attr_setscope(&attr, PTHREAD_SCOPE_PROCESS) ;
    ALLOCATE(tids, pthread_t, nthread) ;
    for ( myid = 0 ; myid < nthread ; myid++ ) {
+#ifdef _MSC_VER
+      tids[myid].p = 0;
+      tids[myid].x = 0;
+#else
       tids[myid] = 0 ;
+#endif
    }
    for ( myid = 0, data = dataObjects ; 
          myid < nthread ; 

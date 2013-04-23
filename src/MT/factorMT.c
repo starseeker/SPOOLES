@@ -489,8 +489,14 @@ if ( msglvl > 2 ) {
 #endif
 #if THREAD_TYPE == TT_POSIX
 if ( msglvl > 2 ) {
-   fprintf(stdout, "\n ### inside workerFactor, myid = %d" 
+
+#ifdef _MSC_VER
+   fprintf(stdout, "\n ### inside workerFactor, myid = %d"
+                   ", pthread_self() = %d", myid, (int)pthread_self().x) ;
+#else
+   fprintf(stdout, "\n ### inside workerFactor, myid = %d"
                    ", pthread_self() = %d", myid, (int)pthread_self()) ;
+#endif
    fflush(stdout) ;
 }
 #endif

@@ -21,6 +21,7 @@ I2Ohash_insert (
 ) {
 int   loc, loc1, loc2 ;
 I2OP  *i2op, *j2op, *prev ;
+long int loc3;
 
 if ( hashtable == NULL ) {
    fprintf(stderr, "\n error in I2Ohash_insert(%p,%d,%d,%p)"
@@ -39,7 +40,7 @@ fflush(stdout) ;
 */
 loc1 = (key1 + 1) % hashtable->nlist ;
 loc2 = (key2 + 1) % hashtable->nlist ;
-long int loc3  = (long int)loc1*(long int)loc2 % hashtable->nlist ;
+loc3  = ((long long)loc1*(long long)loc2) % hashtable->nlist ;
 loc =(int) loc3;
 #if MYDEBUG > 0
 fprintf(stdout, "\n loc1 = %d, loc2 = %d, loc3 = %ld, loc = %d", loc1, loc2, loc3, loc) ;
@@ -140,6 +141,7 @@ I2Ohash_locate (
    void      **pvalue 
 ) {
 int   loc, loc1, loc2, rc ;
+long int loc3 ;
 I2OP   *i2op ;
 /*
    ---------------
@@ -159,7 +161,7 @@ fflush(stdout) ;
 #endif
 loc1 = (key1 + 1) % hashtable->nlist ;
 loc2 = (key2 + 1) % hashtable->nlist ;
-long int loc3  = (long int)loc1*(long int)loc2 % hashtable->nlist ;
+loc3  = ((long long)loc1*(long long)loc2) % hashtable->nlist ;
 loc =(int) loc3;
 #if MYDEBUG > 0
 fprintf(stdout, "\n loc1 = %d, loc2 = %d, loc3 = %ld, loc = %d", loc1, loc2, loc3, loc) ;
