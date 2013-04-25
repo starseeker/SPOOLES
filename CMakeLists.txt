@@ -30,6 +30,26 @@ if(NOT M_LIBRARY)
   endif(HAVE_M_LIBRARY)
 endif(NOT M_LIBRARY)
 
+# search for 32/64 bit pthread library on windows
+# assumed that pthread binary placed on the same
+# level with spooles directory
+if(MSVC)
+  if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+    FILE(GLOB pthread_DIR
+         "../pthreads-w64-*[0-9]-*[0-9]-*[0-9]"
+    )
+  else( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+    FILE(GLOB pthread_DIR
+         "../pthreads-w32-*[0-9]-*[0-9]-*[0-9]"
+    )
+  endif( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+  FIND_PATH(pthread_INCLUDE_DIR pthread.h
+      HINTS ${pthread_DIR}/Pre-built.2/include
+  )
+  INCLUDE_DIRECTORIES( ${pthread_INCLUDE_DIR} )
+endif(MSVC)
+
+
 add_subdirectory(src)
 
 if(SPOOLES_ENABLE_TESTING)
